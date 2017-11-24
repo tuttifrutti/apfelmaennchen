@@ -7,23 +7,23 @@
  * @param {Number} maxAbsolute2
  * @param {Number} maxIterations Maximum iterations
  */
-function Julia(x, y, maxAbsolute2, maxIterations) {
-    var xadd = x;
-    var yadd = y;
+function Julia(cx, cy, maxAbsolute2, maxIterations) {
+    var x = 0.0;
+    var y = 0.0;
+    var xx = 0;
+    var yy = 0;
+    var xy = 0;
 
     var remainingIterations = maxIterations;
-    var xx = x*x;
-    var yy = y*y;
-    var xy = x*y;
     var absolute2 = xx+yy;
 
-    while (  absolute2 <= maxAbsolute2 && remainingIterations > 0) {
+    while ( remainingIterations-- && absolute2 <= maxAbsolute2 ) {
         remainingIterations--;
-        x = xx - yy + xadd;
-        y = xy + xy + yadd;
-        xx = x*x;
-        yy = y*y;
-        xy = x*y;
+        xy = x * y;
+        xx = x * x;
+        yy = y * y;
+        x = xx - yy + cx;
+        y = xy + xy + cy;
         absolute2 = xx + yy;
     }
 
