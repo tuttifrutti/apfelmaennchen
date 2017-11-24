@@ -8,6 +8,6 @@ $(document).ready(function () {
 		canvas.height = 600;
 		$("#canvas").html(canvas);
 
-		apfel(canvas, $("#re_min").val(), $("#im_min").val(), $("#re_max").val(), $("#im_max").val(), 2, 100);
+		apfel(canvas, $("#re_min").val(), $("#re_max").val(), $("#im_min").val(), $("#im_max").val(), 2, 100);
 	});
 });

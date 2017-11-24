@@ -1,44 +1,23 @@
 
-/*
-FUNCTION Julia (x, y, xadd, yadd, max_betrag_2: double, max_iter: integer): integer
-  remain_iter = max_iter
-  xx = x*x
-  yy = y*y
-  xy = x*y
-  betrag_2 = xx + yy
-
-  WHILE (betrag_2 <= max_betrag_2) AND (remain_iter > 0)
-    remain_iter = remain_iter - 1
-    x  = xx - yy + xadd
-    y  = xy + xy + yadd
-    xx = x*x
-    yy = y*y
-    xy = x*y
-    betrag_2 = xx + yy
-  END
-log(log(betrag_2) / log(4)) / log(2)
-  Julia = max_iter - remain_iter
-END FUNCTION*/
-
-
 /**
  * Juuulia
  *
  * @param {Number} x Represents x coordinate
  * @param {Number} y Represents y coordinate
- * @param {Number} xadd
- * @param {Number} yadd
  * @param {Number} maxAbsolute2
  * @param {Number} maxIterations Maximum iterations
  */
-function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
+function Julia(x, y, maxAbsolute2, maxIterations) {
+    var xadd = x;
+    var yadd = y;
+
     var remainingIterations = maxIterations;
     var xx = x*x;
     var yy = y*y;
     var xy = x*y;
     var absolute2 = xx+yy;
 
-    while (remainingIterations-- && absolute2 <= maxAbsolute2 ) {
+    while ( remainingIterations-- && absolute2 <= maxAbsolute2 ) {
         x = xx - yy + xadd;
         y = xy + xy + yadd;
         xx = x*x;
@@ -62,42 +41,52 @@ function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
  * @param {Array} yPixels
  * @param {Number} maxIterations Threshold
  */
-function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
-                maxAbsolute2, xPixels, yPixels, maxIterations) {
-    var cReal, cImaginary, iterations, color;
-    var xLen = xPixels.length;
-    var yLen = yPixels.length;
+function apfel(canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute2, maxIterations) {
+    var width = canvas.width;
+    var height = canvas.height;
+
+    var ctx = canvas.getContext('2d');
+    var img = ctx.getImageData(0, 0, width, height);
+    var pix = img.data;
+
+    var cReal, cImaginary, its, color;
     console.log('Do the \'apfel\'');
 
-    yPixels.forEach(function(y) {
-        cImaginary = imaginaryMin + (imaginaryMax-imaginaryMin) * y / yLen;
-        xPixels.forEach(function(x) {
-            cReal = realMin + (realMax-realMin) * x / xLen;
-            iterations = Julia(cReal, cImaginary, cReal, cImaginary, maxAbsolute2, maxIterations);
-            console.log("Iterations", iterations);
-            //color = chooseColor(iterations, maxIterations);
-            //plot(x, y, color);
-        });
-    });
+    for (var ix = 0 ; ix < width ; ++ix) {
+        for (var iy = 0; iy < height ; ++iy) {
+            var x = xmin + (xmax - xmin) * ix / (width - 1);
+            var y = ymin + (ymax - ymin) * iy / (height - 1);
+            var its = Julia(x, y, maxIterations);
+            var ppos = 4 * (width * iy + ix);
+
+            if (its > maxIterations) {
+               pix[ppos] = 0;
+               pix[ppos + 1] = 0;
+               pix[ppos + 2] = 0;
+             } else {
+               var c = 3 * Math.log(i) / Math.log(iterations - 1.0);
+
+               if (c < 1) {
+                 pix[ppos] = 255 * c;
+                 pix[ppos + 1] = 0;
+                 pix[ppos + 2] = 0;
+               } else if ( c < 2 ) {
+                 pix[ppos] = 255;
+                 pix[ppos + 1] = 255 * (c - 1);
+                 pix[ppos + 2] = 0;
+               } else {
+                 pix[ppos] = 255;
+                 pix[ppos + 1] = 255;
+                 pix[ppos + 2] = 255 * (c - 2);
+               }
+           }
+           pix[ppos + 3] = 255;
+        }
+        ctx.putImageData(img, 0, 0);
+    }
 }
 
-/* PROCEDURE Apfel (re_min, im_min, re_max, im_max, max_betrag_2: double,
-                 xpixels, ypixels, max_iter: integer)
-  FOR y = 0 TO ypixels-1
-    c_im = im_min + (im_max-im_min)*y/ypixels
-
-    FOR x = 0 TO xpixels-1
-      c_re = re_min + (re_max-re_min)*x/xpixels
-
-      iterationen = Julia (c_re, c_im, c_re, c_im, max_betrags_2, max_iter)
-      farb_wert   = waehle_farbe (iterationen, max_iter)
-      plot (x, y, farb_wert)
-    NEXT
-
-  NEXT
-END PROCEDURE*/
-
 module.exports =  {
-	apfel: apfel,
-	julia: Julia
+    apfel: apfel,
+    julia: Julia
 };
