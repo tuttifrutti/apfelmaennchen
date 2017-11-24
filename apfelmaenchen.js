@@ -97,3 +97,5 @@ function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
 
   NEXT
 END PROCEDURE*/
+
+module.exports = apfel;
