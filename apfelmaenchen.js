@@ -60,7 +60,7 @@ function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
  * @param {Number} Imaginary Maximum
  * @param {Number} maxAbsolute2
  * @param {Array} xPixels
- * @param {Array} yPixels 
+ * @param {Array} yPixels
  * @param {Number} maxIterations Threshold
  */
 function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
