@@ -43,7 +43,7 @@ function Julia(x, y, maxAbsolute2, maxIterations) {
  * @param {Array} yPixels
  * @param {Number} maxIterations Threshold
  */
-function apfel(canvas, realMin, imaginaryMin, realMax, imaginaryMax, maxAbsolute2, maxIterations) {
+function apfel(canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute2, maxIterations) {
     var width = canvas.width;
     var height = canvas.height;
 
