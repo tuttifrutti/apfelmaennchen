@@ -97,4 +97,7 @@ function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
   NEXT
 END PROCEDURE*/
 
-module.exports = apfel;
+module.exports =  {
+	apfel: apfel,
+	julia: Julia
+};
