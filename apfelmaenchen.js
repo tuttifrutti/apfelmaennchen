@@ -20,6 +20,17 @@ FUNCTION Julia (x, y, xadd, yadd, max_betrag_2: double, max_iter: integer): inte
   Julia = max_iter - remain_iter
 END FUNCTION*/
 
+
+/**
+ * Juuulia
+ *
+ * @param {Number} x Represents x coordinate
+ * @param {Number} y Represents y coordinate
+ * @param {Number} xadd
+ * @param {Number} yadd
+ * @param {Number} maxAbsolute2
+ * @param {Number} maxIterations Maximum iterations
+ */
 function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
     var remainingIterations = maxIterations;
     var xx = x*x;
@@ -40,12 +51,25 @@ function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
     return maxIterations - remainingIterations;
 }
 
+/**
+ * Apfel apfel
+ *
+ * @param {Number} realMin Real Minimum
+ * @param {Number} Imaginary Minimum
+ * @param {Number} Real Maximum
+ * @param {Number} Imaginary Maximum
+ * @param {Number} maxAbsolute2
+ * @param {Array} xPixels
+ * @param {Array} yPixels 
+ * @param {Number} maxIterations Threshold
+ */
 function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
                 maxAbsolute2, xPixels, yPixels, maxIterations) {
     var cReal, cImaginary, iterations, color;
     var xLen = xPixels.length;
     var yLen = yPixels.length;
-    console.log("Do the 'apfel'");
+    console.log('Do the \'apfel\'');
+
     yPixels.forEach(function(y) {
         cImaginary = imaginaryMin + (imaginaryMax-imaginaryMin) * y / yLen;
         xPixels.forEach(function(x) {
@@ -57,7 +81,7 @@ function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
     });
 }
 
-/*PROCEDURE Apfel (re_min, im_min, re_max, im_max, max_betrag_2: double,
+/* PROCEDURE Apfel (re_min, im_min, re_max, im_max, max_betrag_2: double,
                  xpixels, ypixels, max_iter: integer)
   FOR y = 0 TO ypixels-1
     c_im = im_min + (im_max-im_min)*y/ypixels
