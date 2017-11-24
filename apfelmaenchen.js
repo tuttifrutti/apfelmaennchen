@@ -17,7 +17,8 @@ function Julia(x, y, maxAbsolute2, maxIterations) {
     var xy = x*y;
     var absolute2 = xx+yy;
 
-    while ( remainingIterations-- && absolute2 <= maxAbsolute2 ) {
+    while (  absolute2 <= maxAbsolute2 && remainingIterations > 0) {
+        remainingIterations--;
         x = xx - yy + xadd;
         y = xy + xy + yadd;
         xx = x*x;
@@ -54,9 +55,9 @@ function apfel(canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute
 
     for (var ix = 0 ; ix < width ; ++ix) {
         for (var iy = 0; iy < height ; ++iy) {
-            var x = xmin + (xmax - xmin) * ix / (width - 1);
-            var y = ymin + (ymax - ymin) * iy / (height - 1);
-            var its = Julia(x, y, maxIterations);
+            var x = realMin + (realMax - realMin) * ix / (width - 1);
+            var y = imaginaryMin + (imaginaryMax - imaginaryMin) * iy / (height - 1);
+            var its = Julia(x, y, maxAbsolute2, maxIterations);
             var ppos = 4 * (width * iy + ix);
 
             if (its > maxIterations) {
@@ -64,7 +65,7 @@ function apfel(canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute
                pix[ppos + 1] = 0;
                pix[ppos + 2] = 0;
              } else {
-               var c = 3 * Math.log(i) / Math.log(iterations - 1.0);
+               var c = 3 * Math.log(its) / Math.log(maxIterations - 1.0);
 
                if (c < 1) {
                  pix[ppos] = 255 * c;
@@ -86,7 +87,7 @@ function apfel(canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute
     }
 }
 
-module.exports =  {
+/*module.exports =  {
     apfel: apfel,
     julia: Julia
-};
+};*/

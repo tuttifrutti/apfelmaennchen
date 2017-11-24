@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Apfelmänchen</title>
-	<script language="javascript" type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-	<script language="javascript" type="text/javascript" src="node_modules/underscore/underscore-min.js"></script>
-	<script language="javascript" type="text/javascript" src="apfelmaenchen.js"></script>
-	<script language="javascript" type="text/javascript" src="main.js"></script>
+    <meta charset="UTF-8">
+    <title>Apfelmänchen</title>
+    <script language="javascript" type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="node_modules/underscore/underscore-min.js"></script>
+    <script language="javascript" type="text/javascript" src="apfelmaenchen.js"></script>
+    <script language="javascript" type="text/javascript" src="main.js"></script>
 </head>
 <body>
 <h1>Apfelmänchen</h1>
 <div class="input-params">
-	<form action="#">
-		<h2>Real</h2>
-		<input type="number" id="re_min" name="re_min"/> -
-		<input type="number" id="re_max" name="re_max"/>
-		<h2>Imaginary</h2>
-		<input type="number" id="im_min" name="re_min"/> -
-		<input type="number" id="im_max" name="re_max"/>
-		<input type="submit" id="calculate" name="Do it!"/>
-	</form>
+    <form action="#">
+        <h2>Real</h2>
+        <input type="number" id="re_min" name="re_min" value="-2" /> -
+        <input type="number" id="re_max" name="re_max" value="1"/>
+        <h2>Imaginary</h2>
+        <input type="number" id="im_min" name="re_min" value="-1"/> -
+        <input type="number" id="im_max" name="re_max" value="1"/>
+        <input type="submit" id="calculate" name="Do it!"/>
+    </form>
 </div>
 <div id="canvas"></div>
 </body>
