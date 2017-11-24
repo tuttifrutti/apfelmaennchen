@@ -75,8 +75,9 @@ function apfel(realMin, imaginaryMin, realMax, imaginaryMax,
         xPixels.forEach(function(x) {
             cReal = realMin + (realMax-realMin) * x / xLen;
             iterations = Julia(cReal, cImaginary, cReal, cImaginary, maxAbsolute2, maxIterations);
-            color = chooseColor(iterations, maxIterations);
-            plot(x, y, color);
+            console.log("Iterations", iterations);
+            //color = chooseColor(iterations, maxIterations);
+            //plot(x, y, color);
         });
     });
 }
