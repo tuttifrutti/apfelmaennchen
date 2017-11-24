@@ -6,8 +6,13 @@ $(document).ready(function () {
         var canvas = document.createElement('canvas');
         canvas.width = 900;
         canvas.height = 600;
-        $("#canvas").html(canvas);
 
-        apfel(canvas, $("#re_min").val(), $("#re_max").val(), $("#im_min").val(), $("#im_max").val(), 4, 1000);
+        $("#canvas").html(canvas);
+        var realMin = parseInt($("#re_min").val(), 10);
+        var realMax = parseInt($("#re_max").val(), 10);
+        var imaMin = parseInt($("#im_min").val(), 10);
+        var imaMax = parseInt($("#im_max").val(), 10);
+
+        apfel(canvas, realMin, realMax, imaMin, imaMax, 4, 1000);
     });
 });
