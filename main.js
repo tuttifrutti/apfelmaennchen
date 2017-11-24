@@ -3,8 +3,11 @@ $(document).ready(function () {
 		e.preventDefault();
 		console.log("calculate");
 
-		var xPixels = _.range(1, 100);
-		var yPixels = _.range(1, 100);
-		apfel($("#re_min").val(), $("#im_min").val(), $("#re_max").val(), $("#im_max").val(), 2, xPixels, yPixels, 100);
+		var canvas = document.createElement('canvas');
+		canvas.width = 900;
+		canvas.height = 600;
+		$("#canvas").html(canvas);
+
+		apfel(canvas, $("#re_min").val(), $("#im_min").val(), $("#re_max").val(), $("#im_max").val(), 2, 100);
 	});
 });
