@@ -8,11 +8,15 @@ $(document).ready(function () {
         canvas.height = 600;
 
         $("#canvas").html(canvas);
-        var realMin = parseInt($("#re_min").val(), 10);
-        var realMax = parseInt($("#re_max").val(), 10);
-        var imaMin = parseInt($("#im_min").val(), 10);
-        var imaMax = parseInt($("#im_max").val(), 10);
+        var realMin = getValue("#re_min");
+        var realMax = getValue("#re_max");
+        var imaMin = getValue("#im_min");
+        var imaMax = getValue("#im_max");
 
         apfel(canvas, realMin, realMax, imaMin, imaMax, 4, 1000);
     });
+
+    function getValue(id) {
+    	return parseFloat($(id).val());
+    }
 });
