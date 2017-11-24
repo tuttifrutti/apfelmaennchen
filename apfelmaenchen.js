@@ -38,7 +38,7 @@ function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
     var xy = x*y;
     var absolute2 = xx+yy;
 
-    while (remainingIterations-- && absolute2 <= maxAbsolute2 && ) {
+    while (remainingIterations-- && absolute2 <= maxAbsolute2 ) {
         x = xx - yy + xadd;
         y = xy + xy + yadd;
         xx = x*x;
@@ -47,7 +47,7 @@ function Julia(x, y, xadd, yadd, maxAbsolute2, maxIterations) {
         absolute2 = xx + yy;
     }
 
-    return maxIterations - remainingIterations - Math.log(Math.log(absolute2) / Math.log(4)) / Math.log(2);
+    return maxIterations - remainingIterations;
 }
 
 /**
