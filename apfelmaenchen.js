@@ -1,4 +1,3 @@
-
 /**
  * Juuulia
  *
@@ -8,25 +7,25 @@
  * @param {Number} maxIterations Maximum iterations
  */
 function julia(x, y, maxAbsolute2, maxIterations) {
-    var xadd = x;
-    var yadd = y;
+	var xadd = x;
+	var yadd = y;
 
-    var remainingIterations = maxIterations - 1;
-    var xx = x*x;
-    var yy = y*y;
-    var xy = x*y;
-    var absolute2 = xx+yy;
+	var remainingIterations = maxIterations - 1;
+	var xx = x * x;
+	var yy = y * y;
+	var xy = x * y;
+	var absolute2 = xx + yy;
 
-    while (absolute2 <= maxAbsolute2 && remainingIterations--) {
-        x = xx - yy + xadd;
-        y = xy + xy + yadd;
-        xx = x*x;
-        yy = y*y;
-        xy = x*y;
-        absolute2 = xx + yy;
-    }
+	while (absolute2 <= maxAbsolute2 && remainingIterations--) {
+		x = xx - yy + xadd;
+		y = xy + xy + yadd;
+		xx = x * x;
+		yy = y * y;
+		xy = x * y;
+		absolute2 = xx + yy;
+	}
 
-    return maxIterations - remainingIterations;
+	return maxIterations - remainingIterations;
 }
 
 function setColor(its, maxIterations, pix, ppos) {
@@ -66,27 +65,27 @@ function setColor(its, maxIterations, pix, ppos) {
  * @param {Number} maxIterations Threshold
  */
 function apfel(canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute2, maxIterations) {
-    var width = canvas.width;
-    var height = canvas.height;
+	var width = canvas.width;
+	var height = canvas.height;
 
-    var ctx = canvas.getContext('2d');
-    var img = ctx.getImageData(0, 0, width, height);
-    var pix = img.data;
+	var ctx = canvas.getContext('2d');
+	var img = ctx.getImageData(0, 0, width, height);
+	var pix = img.data;
 
-    var cReal, cImaginary, its, color;
-    console.log('Do the \'apfel\'');
+	var cReal, cImaginary, its, color;
+	console.log('Do the \'apfel\'');
 
-    for (var ix = 0 ; ix < width ; ++ix) {
-        var x = realMin + (realMax - realMin) * ix / (width - 1);
-        for (var iy = 0; iy < height ; ++iy) {
-            var y = imaginaryMin + (imaginaryMax - imaginaryMin) * iy / (height - 1);
-            var its = julia(x, y, maxAbsolute2, maxIterations);
-            var ppos = 4 * (width * iy + ix);
+	for (var ix = 0; ix < width; ++ix) {
+		var x = realMin + (realMax - realMin) * ix / (width - 1);
+		for (var iy = 0; iy < height; ++iy) {
+			var y = imaginaryMin + (imaginaryMax - imaginaryMin) * iy / (height - 1);
+			var its = julia(x, y, maxAbsolute2, maxIterations);
+			var ppos = 4 * (width * iy + ix);
 
-            setColor(its, maxIterations, pix, ppos);
-        }
-        ctx.putImageData(img, 0, 0);
-    }
+			setColor(its, maxIterations, pix, ppos);
+		}
+		ctx.putImageData(img, 0, 0);
+	}
 }
 
 /*module.exports =  {
