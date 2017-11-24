@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "apfelmaennchen",
 	"version": "0.1.0",
 	"description": "",
@@ -26,6 +27,7 @@
 	},
 	"devDependencies": {
 		"eslint": "^4.11.0",
-		"eslint-config-google": "^0.9.1"
+		"eslint-config-google": "^0.9.1",
+		"jasmine": "^2.8.0"
 	}
 }
