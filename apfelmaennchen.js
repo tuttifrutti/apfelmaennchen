@@ -1,6 +1,5 @@
-"use strict";
-
-var Apfelmaennchen = (function () {
+De.Apfelmaennchen = (function () {
+	"use strict";
 
 	function Apfelmaennchen() {
 
@@ -73,7 +72,8 @@ var Apfelmaennchen = (function () {
 		 * @param {Number} maxIterations Threshold
 		 */
 		this.calc = function (canvas, realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute2, maxIterations) {
-			console.log("START calc Apfelmaennchen\nReal:", realMin, realMax, "\nImaginary:", imaginaryMin, imaginaryMax, "\nMaxAbsolute:", maxAbsolute2, "\nMax Iterations:", maxIterations);
+			console.log("START calc Apfelmaennchen\nReal:", realMin, realMax, "\nImaginary:", imaginaryMin, imaginaryMax,
+				"\nMaxAbsolute:", maxAbsolute2, "\nMax Iterations:", maxIterations);
 			var start = new Date();
 			var width = canvas.width;
 			var height = canvas.height;
@@ -81,8 +81,6 @@ var Apfelmaennchen = (function () {
 			var ctx = canvas.getContext('2d');
 			var img = ctx.getImageData(0, 0, width, height);
 			var pix = img.data;
-
-			var cReal, cImaginary, its, color;
 
 			for (var ix = 0; ix < width; ++ix) {
 				var x = realMin + (realMax - realMin) * ix / (width - 1);
@@ -102,7 +100,7 @@ var Apfelmaennchen = (function () {
 	return Apfelmaennchen;
 }());
 
-/*module.exports =  {
+/* module.exports = {
     apfel: apfel,
     julia: Julia
-};*/
+}; */

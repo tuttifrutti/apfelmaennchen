@@ -6,7 +6,7 @@
     "scripts": {
         "test": "jasmine",
         "eslint": "./node_modules/.bin/eslint *.js",
-		"eslint-fix": "./node_modules/.bin/eslint --fix *.js"
+        "eslint-fix": "./node_modules/.bin/eslint --fix *.js"
     },
     "repository": {
         "type": "git",
@@ -27,7 +27,6 @@
     },
     "devDependencies": {
         "eslint": "^4.11.0",
-        "eslint-config-google": "^0.9.1",
         "jasmine": "^2.8.0"
     }
 }
