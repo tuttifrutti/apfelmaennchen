@@ -3,33 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Apfelmaenchen</title>
+	<link rel="stylesheet" type="text/css" href="src/css/style.css">
+
 	<script language="javascript" type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-	<script language="javascript" type="text/javascript" src="node_modules/underscore/underscore-min.js"></script>
-	<script language="javascript" type="text/javascript" src="apfelmaennchen-namespace.js"></script>
-	<script language="javascript" type="text/javascript" src="apfelmaennchen.js"></script>
-	<script language="javascript" type="text/javascript" src="apfelmaennchen-init.js"></script>
+	<script language="javascript" type="text/javascript" src="src/js/apfelmaennchen-namespace.js"></script>
+	<script language="javascript" type="text/javascript" src="src/js/apfelmaennchen.js"></script>
+	<script language="javascript" type="text/javascript" src="src/js/apfelmaennchen-init.js"></script>
 </head>
 <body>
-<h1>Apfelmänchen</h1>
-<div class="input-params">
-	<form action="#">
-		<h2>Real</h2>
-		<!--[-0.748, -0.749]-->
-		<input type="number" id="re_min" name="re_min" value="-2"/> -
-		<input type="number" id="re_max" name="re_max" value="1"/>
+<div id="wrapper">
+	<h1>Apfelmaenchen</h1>
+	<div class="input-params">
+		<form action="#">
+			<h3>Real</h3>
+			<!--[-0.748, -0.749]-->
+			<input type="number" id="re_min" name="re_min" value="-2"/> -
+			<input type="number" id="re_max" name="re_max" value="1"/>
 
-		<h2>Imaginary</h2>
-		<!--[ 0.123,  0.124]-->
-		<input type="number" id="im_min" name="re_min" value="-1"/> -
-		<input type="number" id="im_max" name="re_max" value="1"/>
+			<h3>Imaginary</h3>
+			<!--[ 0.123,  0.124]-->
+			<input type="number" id="im_min" name="re_min" value="-1"/> -
+			<input type="number" id="im_max" name="re_max" value="1"/>
 
-		<h2>Misc</h2>
-		<input type="number" id="maxAbsolute" name="maxAbsolute" value="4"/>
-		<input type="number" id="maxIterations" name="maxIterations" value="1000"/>
-
-		<input type="submit" id="calculate" name="Do it!"/>
-	</form>
+			<h3>Misc</h3>
+			<input type="number" id="maxAbsolute" name="maxAbsolute" value="4"/>
+			<input type="number" id="maxIterations" name="maxIterations" value="1000"/>
+			<br />
+			<button class="button" id="calculate">Do it!</button>
+		</form>
+	</div>
+	<div id="canvas"></div>
 </div>
-<div id="canvas"></div>
 </body>
 </html>

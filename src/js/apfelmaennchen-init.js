@@ -4,11 +4,10 @@
 	function init() {
 		$("#calculate").click(function (e) {
 			e.preventDefault();
-			console.log("calculate");
-
 			var canvas = document.createElement('canvas');
 			canvas.width = 900;
 			canvas.height = 600;
+			console.log("created canvas", canvas);
 
 			$("#canvas").html(canvas);
 			var realMin = getValue("#re_min");
