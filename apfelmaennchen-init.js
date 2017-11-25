@@ -15,7 +15,9 @@ $(document).ready(function () {
 		var maxAbsolute = getValue("#maxAbsolute");
 		var maxIterations = getValue("#maxIterations");
 
-		apfel(canvas, realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
+		var apfelmaennchen = new Apfelmaennchen();
+
+		apfelmaennchen.calc(canvas, realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
 	});
 
 	function getValue(id) {
