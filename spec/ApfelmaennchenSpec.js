@@ -6,6 +6,32 @@ require("../src/js/apfelmaennchen");
 (function (Apfelmaennchen) {
 	"use strict";
 
+	var TEST_VALUES = [{
+		args: [-2, -1, 4, 1000],
+		result: 1
+	}, {
+		args: [-2, 1, 4, 1000],
+		result: 1
+	}, {
+		args: [-1, -1, 4, 1000],
+		result: 3
+	}, {
+		args: [-1, 1, 4, 1000],
+		result: 3
+	}, {
+		args: [0, -1, 4, 1000],
+		result: 1001
+	}, {
+		args: [0, 1, 4, 1000],
+		result: 1001
+	}, {
+		args: [1, -1, 4, 1000],
+		result: 2
+	}, {
+		args: [1, 1, 4, 1000],
+		result: 2
+	}];
+
 	describe("Apfelmaennchen", function () {
 		var apfelmaennchen = new Apfelmaennchen();
 
@@ -13,12 +39,22 @@ require("../src/js/apfelmaennchen");
 			expect(apfelmaennchen).toBeDefined();
 		});
 
-		it("has functions", function () {
-			expect(apfelmaennchen.hasOwnProperty("calc")).toBe(true);
+		describe("Julia", function () {
+			it("has property", function () {
+				expect(apfelmaennchen.hasOwnProperty("julia")).toBe(true);
+			});
 
-			expect(apfelmaennchen.hasOwnProperty("julia")).toBe(true);
+			TEST_VALUES.forEach(function (value) {
+				it("calculates julia", function () {
+					var its = apfelmaennchen.julia.apply(this, value.args);
+
+					expect(its).toBe(value.result);
+				});
+			});
+
 		});
 	});
+
 }(
 	De.Apfelmaennchen
 ));

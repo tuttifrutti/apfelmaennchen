@@ -23,7 +23,8 @@ De.Apfelmaennchen = (function () {
 			var xy = x * y;
 			var absolute2 = xx + yy;
 
-			while (absolute2 <= maxAbsolute2 && remainingIterations--) {
+			while (absolute2 <= maxAbsolute2 && remainingIterations >= 0) {
+				remainingIterations -= 1;
 				x = xx - yy + xadd;
 				y = xy + xy + yadd;
 				xx = x * x;
