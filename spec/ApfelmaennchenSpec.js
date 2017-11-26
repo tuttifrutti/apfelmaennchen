@@ -1,7 +1,24 @@
-describe("Apfelmaenchen", function () {
-	var apfelmaenchen = require('../apfelmaenchen');
+/* eslint-disable */
+De = {};
+require("../src/js/apfelmaennchen");
+/* eslint-enable */
 
-	it("calculate julia", function () {
-		apfelmaenchen.julia(1, 1, 1, 1, 2, 3);
+(function (Apfelmaennchen) {
+	"use strict";
+
+	describe("Apfelmaennchen", function () {
+		var apfelmaennchen = new Apfelmaennchen();
+
+		it("exists", function () {
+			expect(apfelmaennchen).toBeDefined();
+		});
+
+		it("has functions", function () {
+			expect(apfelmaennchen.hasOwnProperty("calc")).toBe(true);
+
+			expect(apfelmaennchen.hasOwnProperty("julia")).toBe(true);
+		});
 	});
-});
+}(
+	De.Apfelmaennchen
+));

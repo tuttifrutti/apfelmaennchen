@@ -1,12 +1,19 @@
 module.exports = {
 	"env": {
 		"browser": true,
-		"jquery": true
+		"jquery": true,
+		"jasmine": true
 	},
 	"globals": {
 		"De": false
 	},
-	"extends": "eslint:recommended",
+	"plugins": [
+		"jasmine"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:jasmine/recommended"
+	],
 	"rules": {
 		// possible errors
 		"no-console": "off",

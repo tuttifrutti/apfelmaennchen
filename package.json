@@ -1,31 +1,32 @@
 {
-    "name": "apfelmaennchen",
-    "version": "0.1.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "jasmine",
-        "eslint": "./node_modules/.bin/eslint *.js",
-        "eslint-fix": "./node_modules/.bin/eslint --fix *.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/tuttifrutti/apfelmaennchen.git"
-    },
-    "keywords": [
-        "mandelbrot"
-    ],
-    "author": "Paul Pasler <ppasler@seibert-media.net>",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/tuttifrutti/apfelmaennchen/issues"
-    },
-    "homepage": "https://github.com/tuttifrutti/apfelmaennchen#readme",
-    "dependencies": {
-        "jquery": "^3.2.1"
-    },
-    "devDependencies": {
-        "eslint": "^4.11.0",
-        "jasmine": "^2.8.0"
-    }
+	"name": "apfelmaennchen",
+	"version": "0.1.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "jasmine",
+		"eslint": "./node_modules/.bin/eslint ./**/*.js",
+		"eslint-fix": "./node_modules/.bin/eslint --fix ./**/*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tuttifrutti/apfelmaennchen.git"
+	},
+	"keywords": [
+		"mandelbrot"
+	],
+	"author": "Paul Pasler <ppasler@seibert-media.net>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/tuttifrutti/apfelmaennchen/issues"
+	},
+	"homepage": "https://github.com/tuttifrutti/apfelmaennchen#readme",
+	"dependencies": {
+		"jquery": "^3.2.1"
+	},
+	"devDependencies": {
+		"eslint": "^4.11.0",
+		"eslint-plugin-jasmine": "^2.9.1",
+		"jasmine": "^2.8.0"
+	}
 }
