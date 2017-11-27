@@ -2,25 +2,32 @@
 	"use strict";
 
 	function init() {
-		$("#calculate").click(function (e) {
-			e.preventDefault();
-			var canvas = document.createElement('canvas');
-			canvas.width = 900;
-			canvas.height = 600;
-			console.log("created canvas", canvas);
+		$("#calculate").click(initClickHandler);
+	}
 
-			$("#canvas").html(canvas);
-			var realMin = getValue("#re_min");
-			var realMax = getValue("#re_max");
-			var imaMin = getValue("#im_min");
-			var imaMax = getValue("#im_max");
-			var maxAbsolute = getValue("#maxAbsolute");
-			var maxIterations = getValue("#maxIterations");
+	function initClickHandler(e) {
+		e.preventDefault();
+		var canvas = createCanvas(900, 600);
+		$("#canvas").html(canvas);
 
-			var apfelmaennchen = new Apfelmaennchen();
+		var apfelmaennchen = new Apfelmaennchen(canvas);
 
-			apfelmaennchen.calc(canvas, realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
-		});
+		var realMin = getValue("#re_min");
+		var realMax = getValue("#re_max");
+		var imaMin = getValue("#im_min");
+		var imaMax = getValue("#im_max");
+		var maxAbsolute = getValue("#maxAbsolute");
+		var maxIterations = getValue("#maxIterations");
+
+		apfelmaennchen.calc(realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
+	}
+
+	function createCanvas(width, height) {
+		var canvas = document.createElement('canvas');
+		canvas.width = 900;
+		canvas.height = 600;
+		console.log("created canvas", canvas);
+		return canvas;
 	}
 
 	function getValue(id) {

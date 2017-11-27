@@ -33,7 +33,10 @@ require("../src/js/apfelmaennchen");
 	}];
 
 	describe("Apfelmaennchen", function () {
-		var apfelmaennchen = new Apfelmaennchen();
+		var apfelmaennchen = new Apfelmaennchen({
+			width: 3,
+			height: 2
+		});
 
 		it("exists", function () {
 			expect(apfelmaennchen).toBeDefined();
@@ -41,12 +44,12 @@ require("../src/js/apfelmaennchen");
 
 		describe("Julia", function () {
 			it("has property", function () {
-				expect(apfelmaennchen.hasOwnProperty("julia")).toBe(true);
+				expect(apfelmaennchen.hasOwnProperty("calcJulia")).toBe(true);
 			});
 
 			TEST_VALUES.forEach(function (value) {
 				it("calculates julia", function () {
-					var its = apfelmaennchen.julia.apply(this, value.args);
+					var its = apfelmaennchen.calcJulia.apply(this, value.args);
 
 					expect(its).toBe(value.result);
 				});
