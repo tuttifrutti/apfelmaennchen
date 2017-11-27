@@ -1,16 +1,20 @@
 (function ($, Apfelmaennchen) {
 	"use strict";
 
+	var WIDTH = 900;
+	var HEIGHT = 600;
+
 	function init() {
 		$("#calculate").click(initClickHandler);
 	}
 
 	function initClickHandler(e) {
 		e.preventDefault();
-		var canvas = createCanvas(900, 600);
+
+		var canvas = createCanvas(WIDTH, HEIGHT);
 		$("#canvas").html(canvas);
 
-		var apfelmaennchen = new Apfelmaennchen(canvas);
+		var apfelmaennchen = new Apfelmaennchen(WIDTH, HEIGHT);
 
 		var realMin = getValue("#re_min");
 		var realMax = getValue("#re_max");
@@ -19,14 +23,14 @@
 		var maxAbsolute = getValue("#maxAbsolute");
 		var maxIterations = getValue("#maxIterations");
 
-		apfelmaennchen.calc(realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
-		apfelmaennchen.draw();
+		var image = apfelmaennchen.calc(realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
+		apfelmaennchen.draw(canvas, image, maxIterations);
 	}
 
 	function createCanvas(width, height) {
 		var canvas = document.createElement('canvas');
-		canvas.width = 900;
-		canvas.height = 600;
+		canvas.width = width;
+		canvas.height = height;
 		console.log("created canvas", canvas);
 		return canvas;
 	}

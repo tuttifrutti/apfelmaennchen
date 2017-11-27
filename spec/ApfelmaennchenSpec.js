@@ -33,10 +33,7 @@ require("../src/js/apfelmaennchen");
 	}];
 
 	describe("Apfelmaennchen", function () {
-		var apfelmaennchen = new Apfelmaennchen({
-			width: 3,
-			height: 2
-		});
+		var apfelmaennchen = new Apfelmaennchen(3, 2);
 
 		it("exists", function () {
 			expect(apfelmaennchen).toBeDefined();

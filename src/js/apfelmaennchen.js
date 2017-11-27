@@ -1,15 +1,9 @@
 De.Apfelmaennchen = (function () {
 	"use strict";
 
-	function Apfelmaennchen(canvas) {
+	function Apfelmaennchen(width, height) {
 
 		var self = this;
-		var width = canvas.width;
-		var height = canvas.height;
-
-		var ctx = canvas.getContext('2d');
-		var img = ctx.getImageData(0, 0, width, height);
-		var pix = img.data;
 
 		/**
 		 * Calculates the Julia value
@@ -40,31 +34,6 @@ De.Apfelmaennchen = (function () {
 			}
 
 			return maxIterations - remainingIterations;
-		};
-
-		this.setColor = function (its, maxIterations, ppos) {
-			if (its > maxIterations) {
-				pix[ppos] = 0;
-				pix[ppos + 1] = 0;
-				pix[ppos + 2] = 0;
-			} else {
-				var c = 3 * Math.log(its) / Math.log(maxIterations - 1.0);
-
-				if (c < 1) {
-					pix[ppos] = 255 * c;
-					pix[ppos + 1] = 0;
-					pix[ppos + 2] = 0;
-				} else if (c < 2) {
-					pix[ppos] = 255;
-					pix[ppos + 1] = 255 * (c - 1);
-					pix[ppos + 2] = 0;
-				} else {
-					pix[ppos] = 255;
-					pix[ppos + 1] = 255;
-					pix[ppos + 2] = 255 * (c - 2);
-				}
-			}
-			pix[ppos + 3] = 255;
 		};
 
 		/**
@@ -105,23 +74,63 @@ De.Apfelmaennchen = (function () {
 			console.log("START calc Apfelmaennchen\nReal:", realMin, realMax, "\nImaginary:", imaginaryMin, imaginaryMax,
 				"\nMaxAbsolute:", maxAbsolute2, "\nMax Iterations:", maxIterations);
 			var start = new Date();
+			var image = [];
 
 			for (var ix = 0; ix < width; ++ix) {
 				var x = self.calcRealPart(realMin, realMax, ix);
+				var row = [];
 				for (var iy = 0; iy < height; ++iy) {
 					var y = self.calcImaginaryPart(imaginaryMin, imaginaryMax, iy);
 					var its = self.calcJulia(x, y, maxAbsolute2, maxIterations);
-					var ppos = 4 * (width * iy + ix);
-
-					self.setColor(its, maxIterations, ppos);
+					row.push(its);
 				}
+				image.push(row);
 			}
 			console.log("DONE calc Apfelmaennchen\ntook ", new Date() - start, "ms for ", width * height, "datapoints");
+			return image;
 		};
 
-		this.draw = function() {
+
+		this.setColor = function (its, maxIterations, ppos, pix) {
+			if (its > maxIterations) {
+				pix[ppos] = 0;
+				pix[ppos + 1] = 0;
+				pix[ppos + 2] = 0;
+			} else {
+				var c = 3 * Math.log(its) / Math.log(maxIterations - 1.0);
+
+				if (c < 1) {
+					pix[ppos] = 255 * c;
+					pix[ppos + 1] = 0;
+					pix[ppos + 2] = 0;
+				} else if (c < 2) {
+					pix[ppos] = 255;
+					pix[ppos + 1] = 255 * (c - 1);
+					pix[ppos + 2] = 0;
+				} else {
+					pix[ppos] = 255;
+					pix[ppos + 1] = 255;
+					pix[ppos + 2] = 255 * (c - 2);
+				}
+			}
+			pix[ppos + 3] = 255;
+		};
+
+		this.draw = function (canvas, image, maxIterations) {
+			console.log("START draw Apfelmaennchen");
+			var start = new Date();
+			var ctx = canvas.getContext('2d');
+			var img = ctx.getImageData(0, 0, width, height);
+			var pix = img.data;
+			for (var ix = 0; ix < width; ++ix) {
+				for (var iy = 0; iy < height; ++iy) {
+					var ppos = 4 * (width * iy + ix);
+					self.setColor(image[ix][iy], maxIterations, ppos, pix);
+				}
+			}
 			ctx.putImageData(img, 0, 0);
-		}
+			console.log("DONE draw Apfelmaennchen\ntook ", new Date() - start, "ms");
+		};
 	}
 
 	return Apfelmaennchen;
