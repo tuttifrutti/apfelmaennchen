@@ -20,6 +20,7 @@
 		var maxIterations = getValue("#maxIterations");
 
 		apfelmaennchen.calc(realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
+		apfelmaennchen.draw();
 	}
 
 	function createCanvas(width, height) {

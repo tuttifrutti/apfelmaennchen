@@ -7,6 +7,10 @@ De.Apfelmaennchen = (function () {
 		var width = canvas.width;
 		var height = canvas.height;
 
+		var ctx = canvas.getContext('2d');
+		var img = ctx.getImageData(0, 0, width, height);
+		var pix = img.data;
+
 		/**
 		 * Calculates the Julia value
 		 *
@@ -38,7 +42,7 @@ De.Apfelmaennchen = (function () {
 			return maxIterations - remainingIterations;
 		};
 
-		this.setColor = function (its, maxIterations, pix, ppos) {
+		this.setColor = function (its, maxIterations, ppos) {
 			if (its > maxIterations) {
 				pix[ppos] = 0;
 				pix[ppos + 1] = 0;
@@ -102,10 +106,6 @@ De.Apfelmaennchen = (function () {
 				"\nMaxAbsolute:", maxAbsolute2, "\nMax Iterations:", maxIterations);
 			var start = new Date();
 
-			var ctx = canvas.getContext('2d');
-			var img = ctx.getImageData(0, 0, width, height);
-			var pix = img.data;
-
 			for (var ix = 0; ix < width; ++ix) {
 				var x = self.calcRealPart(realMin, realMax, ix);
 				for (var iy = 0; iy < height; ++iy) {
@@ -113,12 +113,15 @@ De.Apfelmaennchen = (function () {
 					var its = self.calcJulia(x, y, maxAbsolute2, maxIterations);
 					var ppos = 4 * (width * iy + ix);
 
-					self.setColor(its, maxIterations, pix, ppos);
+					self.setColor(its, maxIterations, ppos);
 				}
-				ctx.putImageData(img, 0, 0);
 			}
 			console.log("DONE calc Apfelmaennchen\ntook ", new Date() - start, "ms for ", width * height, "datapoints");
 		};
+
+		this.draw = function() {
+			ctx.putImageData(img, 0, 0);
+		}
 	}
 
 	return Apfelmaennchen;
