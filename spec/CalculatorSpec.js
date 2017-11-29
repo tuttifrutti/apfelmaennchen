@@ -1,9 +1,9 @@
 /* eslint-disable */
-De = {};
-require("../src/js/apfelmaennchen");
+Apfelmaennchen = {};
+require("../src/js/apfelmaennchen-calculator");
 /* eslint-enable */
 
-(function (Apfelmaennchen) {
+(function (Calculator) {
 	"use strict";
 
 	var TEST_VALUES = [{
@@ -32,21 +32,21 @@ require("../src/js/apfelmaennchen");
 		result: 2
 	}];
 
-	describe("Apfelmaennchen", function () {
-		var apfelmaennchen = new Apfelmaennchen(3, 2);
+	describe("Calculator", function () {
+		var calculator = new Calculator(3, 2);
 
 		it("exists", function () {
-			expect(apfelmaennchen).toBeDefined();
+			expect(calculator).toBeDefined();
 		});
 
 		describe("Julia", function () {
 			it("has property", function () {
-				expect(apfelmaennchen.hasOwnProperty("calcJulia")).toBe(true);
+				expect(calculator.hasOwnProperty("calcJulia")).toBe(true);
 			});
 
 			TEST_VALUES.forEach(function (value) {
 				it("calculates julia", function () {
-					var its = apfelmaennchen.calcJulia.apply(this, value.args);
+					var its = calculator.calcJulia.apply(this, value.args);
 
 					expect(its).toBe(value.result);
 				});
@@ -56,5 +56,5 @@ require("../src/js/apfelmaennchen");
 	});
 
 }(
-	De.Apfelmaennchen
+	Apfelmaennchen.Calculator
 ));

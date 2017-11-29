@@ -5,7 +5,7 @@ module.exports = {
 		"jasmine": true
 	},
 	"globals": {
-		"De": false
+		"Apfelmaennchen": false
 	},
 	"plugins": [
 		"jasmine"

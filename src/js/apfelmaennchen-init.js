@@ -1,4 +1,4 @@
-(function ($, Apfelmaennchen) {
+(function ($, Calculator, Renderer) {
 	"use strict";
 
 	var WIDTH = 900;
@@ -12,9 +12,8 @@
 		e.preventDefault();
 
 		var canvas = createCanvas(WIDTH, HEIGHT);
-		$("#canvas").html(canvas);
-
-		var apfelmaennchen = new Apfelmaennchen(WIDTH, HEIGHT);
+		var calculator = new Calculator(WIDTH, HEIGHT);
+		var renderer = new Renderer(WIDTH, HEIGHT);
 
 		var realMin = getValue("#re_min");
 		var realMax = getValue("#re_max");
@@ -23,14 +22,15 @@
 		var maxAbsolute = getValue("#maxAbsolute");
 		var maxIterations = getValue("#maxIterations");
 
-		var image = apfelmaennchen.calc(realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
-		apfelmaennchen.draw(canvas, image, maxIterations);
+		var image = calculator.calc(realMin, realMax, imaMin, imaMax, maxAbsolute, maxIterations);
+		renderer.render(canvas, image, maxIterations);
 	}
 
 	function createCanvas(width, height) {
 		var canvas = document.createElement('canvas');
 		canvas.width = width;
 		canvas.height = height;
+		$("#canvas").html(canvas);
 		console.log("created canvas", canvas);
 		return canvas;
 	}
@@ -45,5 +45,6 @@
 
 }(
 	$,
-	De.Apfelmaennchen
+	Apfelmaennchen.Calculator,
+	Apfelmaennchen.Renderer
 ));

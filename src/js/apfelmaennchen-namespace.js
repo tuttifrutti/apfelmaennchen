@@ -1,2 +1,2 @@
 /* eslint-disable */
-var De = {};
+var Apfelmaennchen = {};
