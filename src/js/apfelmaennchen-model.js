@@ -1,4 +1,4 @@
-Apfelmaennchen.Model = (function () {
+Apfelmaennchen.Model = (function ($) {
 	"use strict";
 
 	function Model() {
@@ -55,11 +55,11 @@ Apfelmaennchen.Model = (function () {
 		};
 
 		// TODO axes switched
-		function switchImaginaryAxes() {
+		self.switchImaginaryAxes = function() {
 			var x = self.imaMax * -1;
 			self.imaMax = self.imaMin * -1;
 			self.imaMin = x;
-		}
+		};
 
 		function getValue(id) {
 			return parseFloat($(id).val());
