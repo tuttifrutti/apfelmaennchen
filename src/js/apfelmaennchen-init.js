@@ -1,20 +1,38 @@
 (function ($, Calculator, Renderer, Model) {
 	"use strict";
 
-	var width = $(window).width();
-	var height = width * 0.66;
+	var ASPECT_RATIO = 2 / 3.0;
 
+	var width;
+	var height;
 	var canvas;
 	var calculator;
 	var renderer;
 	var model;
 
 	function init() {
+		setWidthAndHeight();
 		calculator = new Calculator(width, height);
 		renderer = new Renderer(width, height);
 		model = new Model();
 		model.init();
 
+		initHandlers();
+
+		calcApfelmaennchen();
+	}
+
+	function setWidthAndHeight() {
+		width = $(window).width();
+		height = Math.floor(width * ASPECT_RATIO);
+
+		if (height > $(window).height()) {
+			height = $(window).height();
+			width = Math.floor(height / ASPECT_RATIO);
+		}
+	}
+
+	function initHandlers() {
 		$("#calculate").on("click", function (e) {
 			e.preventDefault();
 			calcApfelmaennchen();
@@ -29,8 +47,6 @@
 			calcApfelmaennchen();
 			getCursorPosition(e);
 		});
-
-		calcApfelmaennchen();
 	}
 
 	function calcApfelmaennchen() {

@@ -4,13 +4,13 @@
 
 body {
 	margin: 0;
+	background: #000;
 }
 
 #wrapper {
 	position: relative;
 	overflow: hidden;
 }
-
 .input-params {
 	padding: 10px 20px;
 	position: absolute;
