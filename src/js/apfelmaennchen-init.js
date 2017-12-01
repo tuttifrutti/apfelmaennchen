@@ -1,42 +1,36 @@
-(function ($, Calculator, Renderer) {
+(function ($, Calculator, Renderer, Model) {
 	"use strict";
 
 	var WIDTH = 900;
 	var HEIGHT = 600;
-	var ZOOM_FACTOR = 0.75;
-
-	var zoom = 1;
 
 	var canvas;
 	var calculator;
 	var renderer;
+	var model;
 
 	function init() {
 		createCanvas(WIDTH, HEIGHT);
 		calculator = new Calculator(WIDTH, HEIGHT);
 		renderer = new Renderer(WIDTH, HEIGHT);
+		model = new Model();
+		model.init();
 
 		$("#calculate").on("click", function (e) {
 			e.preventDefault();
 			calcApfelmaennchen();
 		});
 		$("#canvas").on("click", function (e) {
-			zoom *= ZOOM_FACTOR;
+			model.zoom();
 			calcApfelmaennchen();
 			getCursorPosition(e);
 		});
 	}
 
 	function calcApfelmaennchen() {
-		var realMin = getValue("#re_min");
-		var realMax = getValue("#re_max");
-		var imaMin = getValue("#im_min") * -1; // TODO axes switched
-		var imaMax = getValue("#im_max") * -1;
-		var maxAbsolute = getValue("#maxAbsolute");
-		var maxIterations = getValue("#maxIterations");
-
-		var image = calculator.calc(realMin * zoom, realMax * zoom, imaMax * zoom, imaMin * zoom, maxAbsolute, maxIterations);
-		renderer.render(canvas, image, maxIterations);
+		model.fetchAndSet();
+		var image = calculator.calc(model.realMin, model.realMax, model.imaMin, model.imaMax, model.maxAbsolute, model.maxIterations);
+		renderer.render(canvas, image, model.maxIterations);
 	}
 
 	function getCursorPosition(event) {
@@ -54,10 +48,6 @@
 		console.log("created canvas", canvas);
 	}
 
-	function getValue(id) {
-		return parseFloat($(id).val());
-	}
-
 	$(document).ready(function () {
 		init();
 	});
@@ -65,5 +55,6 @@
 }(
 	$,
 	Apfelmaennchen.Calculator,
-	Apfelmaennchen.Renderer
+	Apfelmaennchen.Renderer,
+	Apfelmaennchen.Model
 ));
