@@ -1,8 +1,8 @@
 (function ($, Calculator, Renderer, Model) {
 	"use strict";
 
-	var WIDTH = 900;
-	var HEIGHT = 600;
+	var width = $(window).width();
+	var height = width * 0.66;
 
 	var canvas;
 	var calculator;
@@ -10,9 +10,8 @@
 	var model;
 
 	function init() {
-		createCanvas(WIDTH, HEIGHT);
-		calculator = new Calculator(WIDTH, HEIGHT);
-		renderer = new Renderer(WIDTH, HEIGHT);
+		calculator = new Calculator(width, height);
+		renderer = new Renderer(width, height);
 		model = new Model();
 		model.init();
 
@@ -20,14 +19,22 @@
 			e.preventDefault();
 			calcApfelmaennchen();
 		});
+		$("#reset").on("click", function (e) {
+			e.preventDefault();
+			model.reset();
+			calcApfelmaennchen();
+		});
 		$("#canvas").on("click", function (e) {
 			model.zoom();
 			calcApfelmaennchen();
 			getCursorPosition(e);
 		});
+
+		calcApfelmaennchen();
 	}
 
 	function calcApfelmaennchen() {
+		createCanvas(width, height);
 		model.fetchAndSet();
 		var image = calculator.calc(model.realMin, model.realMax, model.imaMin, model.imaMax, model.maxAbsolute, model.maxIterations);
 		renderer.render(canvas, image, model.maxIterations);

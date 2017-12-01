@@ -5,16 +5,22 @@ Apfelmaennchen.Model = (function () {
 		var self = this;
 
 		var ZOOM_FACTOR = 0.75;
-		this.currentZoom = 1;
-
-		this.realMin = -2;
-		this.realMax = 1;
-		this.imaMin = -1;
-		this.imaMax = 1;
-		this.maxAbsolute = 4;
-		this.maxIterations = 1000;
 
 		this.init = function() {
+			self.reset();
+			self.updateView();
+		};
+
+		this.reset = function () {
+			this.currentZoom = 1;
+
+			this.realMin = -2;
+			this.realMax = 1;
+			this.imaMin = -1;
+			this.imaMax = 1;
+			this.maxAbsolute = 4;
+			this.maxIterations = 1000;
+
 			self.updateView();
 		};
 
@@ -25,6 +31,8 @@ Apfelmaennchen.Model = (function () {
 			self.realMax *= self.currentZoom;
 			self.imaMin *= self.currentZoom;
 			self.imaMax *= self.currentZoom;
+
+			self.updateView();
 		};
 
 		this.fetchAndSet = function() {

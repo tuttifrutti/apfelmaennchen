@@ -2,8 +2,13 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+	margin: 0;
+}
+
 #wrapper {
 	position: relative;
+	overflow: hidden;
 }
 
 .input-params {
@@ -33,4 +38,8 @@ input {
 	display: inline-block;
 	font-size: 16px;
 	cursor: pointer;
+}
+
+#reset {
+	background: #888888;
 }

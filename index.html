@@ -14,24 +14,28 @@
 </head>
 <body>
 <div id="wrapper">
-	<h1>Apfelmaennchen</h1>
 	<div class="input-params">
+		<h1>Apfelmaennchen</h1>
 		<form action="#">
-			<h3>Real</h3>
+			<h2>Real</h2>
 			<!--[-0.748, -0.749]-->
-			<input type="number" id="realMin" name="realMin" /> -
-			<input type="number" id="realMax" name="realMax" />
+			<input type="number" id="realMin" name="realMin"/> -
+			<input type="number" id="realMax" name="realMax"/>
+			<div class="additional">
+				<h3>Imaginary</h3>
+				<!--[ 0.123,  0.124]-->
+				<input type="number" id="imaMin" name="imaMin"/> -
+				<input type="number" id="imaMax" name="imaMax"/>
 
-			<h3>Imaginary</h3>
-			<!--[ 0.123,  0.124]-->
-			<input type="number" id="imaMin" name="imaMin" /> -
-			<input type="number" id="imaMax" name="imaMax" />
+				<h3>Misc</h3>
+				<input type="number" id="maxAbsolute" name="maxAbsolute"/>
+				<input type="number" id="maxIterations" name="maxIterations"/>
+			</div>
 
-			<h3>Misc</h3>
-			<input type="number" id="maxAbsolute" name="maxAbsolute" />
-			<input type="number" id="maxIterations" name="maxIterations" />
-			<br/>
-			<button class="button" id="calculate">Do it!</button>
+			<div class="navigation">
+				<button class="button" id="calculate">Calculate</button>
+				<button class="button" id="reset">Reset</button>
+			</div>
 		</form>
 	</div>
 	<div id="canvas" title="Right click to save"></div>
