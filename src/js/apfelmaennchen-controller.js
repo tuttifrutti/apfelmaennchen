@@ -12,7 +12,7 @@ Apfelmaennchen.Controller = (function (Calculator, Renderer, Model, View) {
 			createCanvas();
 			calculator = new Calculator(width, height);
 			renderer = new Renderer(width, height);
-			model = new Model();
+			model = new Model(width, height);
 			model.init();
 			view = new View(model);
 			initHandlers();
