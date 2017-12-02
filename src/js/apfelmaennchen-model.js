@@ -1,14 +1,13 @@
-Apfelmaennchen.Model = (function ($) {
+Apfelmaennchen.Model = (function () {
 	"use strict";
 
-	function Model() {
+	function Model(width, height) {
 		var self = this;
 
 		var ZOOM_FACTOR = 0.75;
 
-		this.init = function() {
+		this.init = function () {
 			self.reset();
-			self.updateView();
 		};
 
 		this.reset = function () {
@@ -20,52 +19,53 @@ Apfelmaennchen.Model = (function ($) {
 			this.imaMax = 1;
 			this.maxAbsolute = 4;
 			this.maxIterations = 1000;
-
-			self.updateView();
 		};
 
-		this.zoom = function() {
+		this.zoom = function () {
 			self.currentZoom *= ZOOM_FACTOR;
 
 			self.realMin *= self.currentZoom;
 			self.realMax *= self.currentZoom;
 			self.imaMin *= self.currentZoom;
 			self.imaMax *= self.currentZoom;
-
-			self.updateView();
 		};
 
-		this.fetchAndSet = function() {
-			self.realMin = getValue("#realMin");
-			self.realMax = getValue("#realMax");
-			self.imaMin = getValue("#imaMin");
-			self.imaMax = getValue("#imaMax");
-			self.maxAbsolute = getValue("#maxAbsolute");
-			self.maxIterations = getValue("#maxIterations");
-			switchImaginaryAxes();
+		this.translateX = function (x) {
+			var xNorm = x / width;
+			return translate(xNorm, self.realMin, self.realMax);
 		};
 
-		this.updateView = function() {
-			$("#realMin").val(self.realMin);
-			$("#realMax").val(self.realMax);
-			$("#imaMin").val(self.imaMin);
-			$("#imaMax").val(self.imaMax);
-			$("#maxAbsolute").val(self.maxAbsolute);
-			$("#maxIterations").val(self.maxIterations);
+		this.translateY = function (y) {
+			var yNorm = y / height;
+			return translate(yNorm, self.imaMin, self.imaMax) * -1;
+		};
+
+		function translate(norm, min, max) {
+			return (norm * (max - min)) + min;
+		}
+
+		function calcDimension() {
+			return [self.realMax - self.realMin, self.imaMax - self.imaMin];
+		}
+
+		this.move = function (x, y) {
+			var centerX = self.translateX(x);
+			var centerY = self.translateY(y);
+			var dimension = calcDimension();
+
+			self.realMin = centerX - (dimension[0] / 2);
+			self.realMax = centerX + (dimension[0] / 2);
+			self.imaMin = centerY - (dimension[1] / 2);
+			self.imaMax = centerY + (dimension[1] / 2);
 		};
 
 		// TODO axes switched
-		self.switchImaginaryAxes = function() {
+		self.switchImaginaryAxes = function () {
 			var x = self.imaMax * -1;
 			self.imaMax = self.imaMin * -1;
 			self.imaMin = x;
 		};
-
-		function getValue(id) {
-			return parseFloat($(id).val());
-		}
 	}
+
 	return Model;
-}(
-	$
-));
+}());
