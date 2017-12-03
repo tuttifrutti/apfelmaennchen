@@ -64,14 +64,14 @@ Apfelmaennchen.Calculator = (function () {
 		 * Calculates the Mandelbrot (Apfelmaennchen) set
 		 *
 		 * @param {Number} realMin Real Minimum
-		 * @param {Number} imaginaryMin Imaginary Minimum
+		 * @param {Number} imaMin Imaginary Minimum
 		 * @param {Number} realMax Real Maximum
-		 * @param {Number} imaginaryMax Imaginary Maximum
+		 * @param {Number} imaMax Imaginary Maximum
 		 * @param {Number} maxAbsolute2
 		 * @param {Number} maxIterations Threshold
 		 */
-		this.calc = function (realMin, realMax, imaginaryMin, imaginaryMax, maxAbsolute2, maxIterations) {
-			console.log("START calc Apfelmaennchen\nReal:", realMin, realMax, "\nImaginary:", imaginaryMin, imaginaryMax,
+		this.calc = function (realMin, realMax, imaMin, imaMax, maxAbsolute2, maxIterations) {
+			console.log("START calc Apfelmaennchen\nReal:", realMin, realMax, "\nImaginary:", imaMin, imaMax,
 				"\nMaxAbsolute:", maxAbsolute2, "\nMax Iterations:", maxIterations);
 			var start = new Date();
 			var image = [];
@@ -80,7 +80,7 @@ Apfelmaennchen.Calculator = (function () {
 				var x = self.calcRealPart(realMin, realMax, ix);
 				var row = [];
 				for (var iy = 0; iy < height; ++iy) {
-					var y = self.calcImaginaryPart(imaginaryMin, imaginaryMax, iy);
+					var y = self.calcImaginaryPart(imaMin, imaMax, iy);
 					var its = self.calcJulia(x, y, maxAbsolute2, maxIterations);
 					row.push(its);
 				}

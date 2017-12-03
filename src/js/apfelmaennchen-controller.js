@@ -8,7 +8,7 @@ Apfelmaennchen.Controller = (function (Calculator, Renderer, Model, View) {
 		var model;
 		var view;
 
-		this.init = function() {
+		this.init = function () {
 			createCanvas();
 			calculator = new Calculator(width, height);
 			renderer = new Renderer(width, height);
@@ -58,6 +58,9 @@ Apfelmaennchen.Controller = (function (Calculator, Renderer, Model, View) {
 			canvas = document.createElement('canvas');
 			canvas.width = width;
 			canvas.height = height;
+			var ctx = canvas.getContext('2d');
+			ctx.translate(0, canvas.height);
+			ctx.scale(1, -1);
 			$("#canvas").html(canvas);
 			console.log("created canvas", canvas);
 		}

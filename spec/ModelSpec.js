@@ -17,14 +17,6 @@ require("../src/js/apfelmaennchen-model");
 			expect(model).toBeDefined();
 		});
 
-		it("switches imaginary axes", function () {
-			model.switchImaginaryAxes();
-
-			expect(model.imaMin).toBe(-1);
-
-			expect(model.imaMax).toBe(1);
-		});
-
 		it("zooms it", function () {
 			model.zoom();
 
@@ -33,33 +25,29 @@ require("../src/js/apfelmaennchen-model");
 			expect(model.imaMax).toBe(0.75);
 		});
 
-		describe("translate()", function () {
+		describe("move()", function () {
 			var TEST_VALUES = [
-				[[0, 0], [-2, 1]],
-				[[900, 600], [1, -1]],
-				[[450, 300], [-0.5, 0]],
-				[[900, 0], [1, 1]],
-				[[0, 600], [-2, -1]]
+				[[0, 300], [-3.5, -0.5, -1, 1]],
+				[[900, 300], [-0.5, 2.5, -1, 1]],
+				[[450, 300], [-2, 1, -1, 1]],
+				[[450, 0], [-2, 1, -2, 0]],
+				[[450, 600], [-2, 1, 0, 2]]
 			];
 
 			TEST_VALUES.forEach(function (value) {
-				it("translates x " + value, function () {
+				it("moves it", function () {
 					var canPos = value[0];
 					var apfelPos = value[1];
 
-					var resultX = model.translateX(canPos[0]);
+					model.move(canPos[0], canPos[1]);
 
-					expect(resultX).toBe(apfelPos[0]);
-				});
+					expect(model.realMin).toBe(apfelPos[0]);
 
-				it("translates y " + value, function () {
-					var canPos = value[0];
-					var apfelPos = value[1];
+					expect(model.realMax).toBe(apfelPos[1]);
 
-					var resultY = model.translateY(canPos[1]);
+					expect(model.imaMin).toBe(apfelPos[2]);
 
-					expect(resultY).toBe(apfelPos[1]);
-
+					expect(model.imaMax).toBe(apfelPos[3]);
 				});
 			});
 		});

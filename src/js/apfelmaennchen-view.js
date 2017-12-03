@@ -9,8 +9,6 @@ Apfelmaennchen.View = (function ($) {
 			model.imaMax = getValue("#imaMax");
 			model.maxAbsolute = getValue("#maxAbsolute");
 			model.maxIterations = getValue("#maxIterations");
-
-			model.switchImaginaryAxes();
 		};
 
 		this.updateView = function () {

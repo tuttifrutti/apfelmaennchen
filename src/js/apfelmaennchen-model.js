@@ -30,15 +30,15 @@ Apfelmaennchen.Model = (function () {
 			self.imaMax *= self.currentZoom;
 		};
 
-		this.translateX = function (x) {
+		function translateX(x) {
 			var xNorm = x / width;
 			return translate(xNorm, self.realMin, self.realMax);
-		};
+		}
 
-		this.translateY = function (y) {
+		function translateY(y) {
 			var yNorm = y / height;
-			return translate(yNorm, self.imaMin, self.imaMax) * -1;
-		};
+			return translate(yNorm, self.imaMin, self.imaMax);
+		}
 
 		function translate(norm, min, max) {
 			return (norm * (max - min)) + min;
@@ -49,21 +49,14 @@ Apfelmaennchen.Model = (function () {
 		}
 
 		this.move = function (x, y) {
-			var centerX = self.translateX(x);
-			var centerY = self.translateY(y);
+			var centerX = translateX(x);
+			var centerY = translateY(y);
 			var dimension = calcDimension();
 
 			self.realMin = centerX - (dimension[0] / 2);
 			self.realMax = centerX + (dimension[0] / 2);
 			self.imaMin = centerY - (dimension[1] / 2);
 			self.imaMax = centerY + (dimension[1] / 2);
-		};
-
-		// TODO axes switched
-		self.switchImaginaryAxes = function () {
-			var x = self.imaMax * -1;
-			self.imaMax = self.imaMin * -1;
-			self.imaMin = x;
 		};
 	}
 
